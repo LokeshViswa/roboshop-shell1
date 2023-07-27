@@ -1,4 +1,4 @@
-yum install nginx -y.
+yum install nginx -y.7
 systemctl enable nginx
 systemctl start nginx
 rm -rf /usr/share/nginx/html/*
