@@ -9,7 +9,7 @@ rm -rf /usr/share/nginx/html/*
 echo -e "\e[35m Download frontend Content\e[0m"
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
 
-cd /usr/share/nginx/html.
+cd /usr/share/nginx/html
 
 echo -e "\e[35m Extract Frontend content\e[0m"
 unzip /tmp/frontend.zip
