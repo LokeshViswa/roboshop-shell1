@@ -18,10 +18,12 @@ npm install
 cp ${script_location}/files/catalogue.service /etc/systemd/system/catalogue.service
 systemctl daemon-reload
 
-systemctl enable catalogue
-systemctl restart catalogue
+
 
 cp ${script_location}/files/mongodb.repo /etc/yum.repos.d/mongodb.repo
 yum install mongodb-org-shell -y
 
 mongo --host mongodb-dev.lokeshviswa44.online </app/schema/catalogue.js
+
+systemctl enable catalogue
+systemctl restart catalogue
