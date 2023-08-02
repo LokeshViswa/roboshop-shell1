@@ -1,4 +1,5 @@
 script_location=$(pwd)
+LOG=/tmp/roboshop.log
 
 echo -e "\e[35m Install Nginx\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG}
