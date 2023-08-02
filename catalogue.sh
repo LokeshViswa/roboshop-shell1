@@ -1,29 +1,64 @@
 script_location=$(pwd)
 
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+echo -e "\e[35m Install Nginx\e[0m"
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG}
 
-yum install nodejs -y
+echo -e "\e[35m Install Nginx\e[0m"
+yum install nodejs -y &>>${LOG}
 
-useradd roboshop
+echo -e "\e[35m Install Nginx\e[0m"
+useradd roboshop &>>${LOG}
 
-mkdir -p /app
+echo -e "\e[35m Install Nginx\e[0m"
+mkdir -p /app &>>${LOG}
 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
-rm -rf /app/*
+echo -e "\e[35m Install Nginx\e[0m"
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>${LOG}
+
+echo -e "\e[35m Install Nginx\e[0m"
+rm -rf /app/* &>>${LOG}
+
+echo -e "\e[35m Install Nginx\e[0m"
 cd /app
-unzip /tmp/catalogue.zip
+
+echo -e "\e[35m Install Nginx\e[0m"
+unzip /tmp/catalogue.zip &>>${LOG}
+
 cd /app
-npm install
 
-cp ${script_location}/files/catalogue.service /etc/systemd/system/catalogue.service
-systemctl daemon-reload
+echo -e "\e[35m Install Nginx\e[0m"
+npm install &>>${LOG}
+
+echo -e "\e[35m Install Nginx\e[0m"
+cp ${script_location}/files/catalogue.service /etc/systemd/system/catalogue.service &>>${LOG}
+
+echo -e "\e[35m Install Nginx\e[0m"
+systemctl daemon-reload &>>${LOG}
+
+echo -e "\e[35m Install Nginx\e[0m"
+systemctl enable catalogue &>>${LOG}
+
+echo -e "\e[35m Install Nginx\e[0m"
+systemctl restart catalogue &>>${LOG}
+
+echo -e "\e[35m Install Nginx\e[0m"
+cp ${script_location}/files/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${LOG}
+
+echo -e "\e[35m Install Nginx\e[0m"
+yum install mongodb-org-shell -y &>>${LOG}
+
+echo -e "\e[35m Install Nginx\e[0m"
+mongo --host mongodb-dev.lokeshviswa44.online </app/schema/catalogue.js &>>${LOG}
 
 
 
-cp ${script_location}/files/mongodb.repo /etc/yum.repos.d/mongodb.repo
-yum install mongodb-org-shell -y
 
-mongo --host mongodb-dev.lokeshviswa44.online </app/schema/catalogue.js
 
-systemctl enable catalogue
-systemctl restart catalogue
+
+
+
+
+
+
+
+
