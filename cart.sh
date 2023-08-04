@@ -4,20 +4,30 @@ print_head "Configure NodeJS repos"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 status_check
 
-print_head "Configure NodeJS repos"
+print_head "Install NodeJS"
 yum install nodejs -y
 status_check
 
-print_head "Configure NodeJS repos"
-useradd roboshop
+print_head "Add Application User"
+id roboshop &>>${LOG}
+if [ $? -ne 0 ]; then
+  useradd roboshop &>>${LOG}
+fi
 status_check
 
-mkdir /app
+mkdir /app &>>${LOG}
 
-print_head "Configure NodeJS repos"
+print_head "Downloading App Content"
 curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart.zip
+status_check
+
+print_head "Cleanup Old Content"
+rm -rf /app/* &>>${LOG}
+status_check
+
+print_head "Extracting App Content"
 cd /app
-unzip /tmp/cart.zip
+unzip /tmp/cart.zip &>>${LOG}
 status_check
 
 
