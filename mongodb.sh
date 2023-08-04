@@ -1,17 +1,21 @@
-script_location=$(pwd)
-LOG=/tmp/roboshop.log
+source common.sh
 
-echo -e "\e[35m Install Nginx\e[0m"
+print_head "Copy MongoDB Repo file"
 cp ${script_location}/files/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${LOG}
+status_check
 
-echo -e "\e[35m Install Nginx\e[0m"
+print_head "Install MongoDB"
 yum install mongodb-org -y &>>${LOG}
+status_check
 
-echo -e "\e[35m Install Nginx\e[0m"
+print_head "Update MongoDB Listen Address"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf &>>${LOG}
+status_check
 
-echo -e "\e[35m Install Nginx\e[0m"
+print_head "Enable MongoDB"
 systemctl enable mongod &>>${LOG}
+status_check
 
-echo -e "\e[35m Install Nginx\e[0m"
+print_head "Start MongoDB"
 systemctl restart mongod &>>${LOG}
+status_check
