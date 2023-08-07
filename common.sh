@@ -3,16 +3,16 @@ LOG=/tmp/roboshop.log
 
 status_check() {
   if [ $? -eq 0 ]; then
-    print_head "\e[1;31mSuccess\e[0m"
+    echo -e "\e[1;31mSuccess\e[0m"
   else
-    print_head "\e[1;31mFailure\e[0m"
+    echo -e "\e[1;31mFailure\e[0m"
     echo "Refer Log file for more Information, LOG - ${LOG}"
-  exit
+    exit
   fi
 }
 
 print_head () {
-  print_head "\e[1m $1 \e[0m"
+  echo -e "\e[1m $1 \e[0m"
 }
 
 NODEJS() {
@@ -79,5 +79,5 @@ NODEJS() {
     print_head "Load Schema"
     mongo --host mongodb-dev.lokeshviswa44.online </app/schema/${component}.js &>>${LOG}
     status_check
-  fi 
+  fi
 }
