@@ -52,7 +52,7 @@ NODEJS() {
   status_check
 
   print_head "Configuring ${component} Service File"
-  cp ${script_location}/files/${component}.service /etc/systemd/system/catalogue.service &>>${LOG}
+  cp ${script_location}/files/${component}.service /etc/systemd/system/{component}.service &>>${LOG}
   status_check
 
   print_head "Reload SystemD"
